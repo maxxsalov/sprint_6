@@ -1,7 +1,7 @@
 import allure
 import pytest
 from data import ListData
-from data import DataUrls
+from locators.locators_main_page import MainPageLocators
 
 
 @pytest.mark.usefixtures("driver")
@@ -12,9 +12,8 @@ class TestQuestions:
                         ' при разворачивании выполняется отображение соответствующего ответа')
     @pytest.mark.parametrize("index,text", ListData.QUESTIONS_LIST)
     def test_get_answer_on_question(self, driver, base_page, main_page, index, text):
-        base_page.open_page(DataUrls.SCOOTER_URL)
-        main_page.scroll_to_questions()
+        base_page.scroll_to(MainPageLocators.FAQ)
         main_page.click_on_question(index)
         answer = main_page.get_answer_text()
         main_page.wait_for_get_answer()
-        assert answer == text
+        assert answer == text, f'Ответ на вопрос {index} соответвтствует ожидаемому'

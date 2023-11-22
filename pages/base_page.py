@@ -26,3 +26,12 @@ class BasePage:
     @allure.step('Открыть страницу {page}')
     def open_page(self, page):
         self.driver.get(page)
+
+    def click_cookie_button(self):
+        self.driver.find_element(*BasePageLocators.COOKIE_BUTTON).click()
+
+    @allure.step('Пролистать')
+    def scroll_to(self, locator):
+        field = self.driver.find_element(*locator)
+        self.driver.execute_script("arguments[0].scrollIntoView();", field)
+        WebDriverWait(self.driver, 10).until(ec.visibility_of_element_located(locator))

@@ -1,8 +1,8 @@
 import pytest
-import datetime
 
 from selenium import webdriver
 
+from data import DataUrls
 from pages.base_page import BasePage
 from pages.main_page import MainPage
 from pages.order_page import OrderPage
@@ -20,6 +20,7 @@ def driver():
 @pytest.fixture
 def base_page(driver):
     page = BasePage(driver)
+    page.open_page(DataUrls.SCOOTER_URL)
     return page
 
 
@@ -33,13 +34,3 @@ def main_page(driver):
 def order_page(driver):
     order = OrderPage(driver)
     return order
-
-
-@pytest.fixture
-def get_date_today():
-    return datetime.date.today().strftime('%d.%m.%Y')
-
-
-@pytest.fixture
-def get_date_tomorrow():
-    return (datetime.date.today() + datetime.timedelta(days=1)).strftime('%d.%m.%Y')

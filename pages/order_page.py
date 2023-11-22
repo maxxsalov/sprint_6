@@ -3,12 +3,15 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
 from locators.locators_order_page import OrderPageLocators
 from selenium.webdriver.common.keys import Keys
+from pages.base_page import BasePage
 
 
-class OrderPage:
+def order_page(self):
+    order = OrderPage(self)
+    return order
 
-    def __init__(self, driver):
-        self.driver = driver
+
+class OrderPage(BasePage):
 
     def set_name(self, name):
         self.driver.find_element(*OrderPageLocators.NAME_FIELD).send_keys(name)

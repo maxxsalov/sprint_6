@@ -1,3 +1,5 @@
+from utils import get_date_today, get_date_tomorrow
+
 
 class Persons:
     PERSON_1 = {'name': 'Юзер', 'lastname': 'Тестов', 'address': 'бауманская 1',
@@ -38,5 +40,8 @@ class ListData:
 class RentalData:
     DATA_1 = {'date': '01.01.1990', 'day': 'one', 'color': 'black', 'comment': 'Позвонить заранее'}
     DATA_2 = {'date': '09.09.2023', 'day': 'two', 'color': 'grey', 'comment': 'no call'}
+
+    DATE_TODAY = get_date_today()
+    DATE_TOMORROW = get_date_tomorrow()
 
 
